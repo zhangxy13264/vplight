@@ -8,7 +8,7 @@ The code framework is based on [LibSignal](https://github.com/DaRL-LibSignal/Lib
 
 ## SUMO Environment
 
-To install SUMO environment, please follow the instructions on [SUMO Doc](https://epics-sumo.sourceforge.io/sumo-install.html#)
+The traffic simulator uses SUMO. For guidelines, please refer to [SUMO Doc](https://epics-sumo.sourceforge.io/sumo-install.html#).
 
 ```
 sudo apt-get install cmake python g++ libxerces-c-dev libfox-1.6-dev libgdal-dev libproj-dev libgl2ps-dev swig
@@ -22,23 +22,19 @@ cmake ../..
 make -j$(nproc)
 ```
 
-To test installation:
+To verify the installation:
 
 ```
 cd $PWD/sumo/bin
 ./sumo
 ```
 
-To add SUMO and traci model into the system PATH, execute the code below:
+Add SUMO into the system PATH and test the configuration:
 
 ```
 export SUMO_HOME=~/$PWD/sumo
 export PYTHONPATH="$SUMO_HOME/tools:$PYTHONPATH"
-```
 
-To test configuration:
-
-```
 import libsumo
 import traci
 ```
