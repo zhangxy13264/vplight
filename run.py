@@ -23,10 +23,10 @@ parser.add_argument('--delay_type', type=str, default="apx", choices=['apx','rea
 parser.add_argument('-t', '--task', type=str, default="tsc_p", help="task type to run")
 parser.add_argument('-a', '--agent', type=str, default="vplight", help="agent type of agents in RL environment")
 parser.add_argument('-w', '--world', type=str, default="sumo", choices=['sumo'], help="simulator type")
-parser.add_argument('-n', '--network', type=str, default="hz1x1_person", help="network name") # hz1x1_person jinan3x4_person
+parser.add_argument('-n', '--network', type=str, default="jinan3x4_person", help="network name")
 parser.add_argument('-d', '--dataset', type=str, default='onfly', help='type of dataset in training process')
 
-parser.add_argument('--arrival_rate', type=float, default="2", help='configuration options for pedestrian flow')
+parser.add_argument('--arrival_rate', type=float, default="1", help='configuration options for pedestrian flow')
 
 args = parser.parse_args()
 os.environ["CUDA_VISIBLE_DEVICES"] = args.ngpu
