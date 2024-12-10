@@ -60,5 +60,5 @@ pip install torch-scatter torch-sparse torch-cluster torch-spline-conv torch-geo
 Based on LibSignal, we modified world_sumo.py, added tscp_trainer.py and some generators to implement the traffic signal control task for mixed traffic flows. In run.py, you can modify the task to tsc_p to select the mixed traffic flow, choose the agent method, change the road network, and adjust different pedestrian flow configurations through arrival_rate.
 
 ```
-python run.py
+python run.py --task tsc_p --agent vplight --network jinan3x4_person --arrival_rate 1
 ```
