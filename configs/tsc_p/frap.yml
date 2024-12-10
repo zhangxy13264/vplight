@@ -1,0 +1,202 @@
+includes:
+  - configs/tsc_p/base.yml
+
+model:
+  name: frap
+  train_model: True
+  n_layers: 2
+  rotation: true
+  conflict_matrix: true
+  merge: multiply
+  d_dense: 20
+  epsilon: 0.1
+  epsilon_decay: 0.995
+  epsilon_min: 0.01
+  demand_shape: 1
+
+  one_hot: False
+  phase: True
+
+trainer: 
+  learning_start: 1000
+  # action_interval: 20
+  # episodes: 1
+  # test_when_train: False
+
+world:
+  signal_config: {
+    grid4x4: {
+      # phases: ['NT_ST','NL_SL','NT_NL','ST_SL','ET_WT','EL_WL','WT_WL','ET_EL']
+      phase_pairs: [[1, 7], [2, 8], [1, 2], [7, 8], [4, 10], [5, 11], [10, 11], [4, 5]],
+      valid_acts: null
+    },
+    hz1x1: {
+      # phases: ['ET_WT','NT_ST','EL_WL','NL_SL','WT_WL','ET_EL','ST_SL','NT_NL']
+      phase_pairs: [[2, 6], [0, 4], [3, 7], [1, 5], [6, 7], [2, 3], [4, 5], [0, 1]],
+      valid_acts: null
+    },
+    hz4x4: {
+      # phases: ['ET_WT','NT_ST','EL_WL','NL_SL','WT_WL','ET_EL','ST_SL','NT_NL']
+      phase_pairs: [[4, 10], [1, 7], [5, 11], [2, 8], [10, 11], [4, 5], [7, 8], [1, 2]],
+      valid_acts: null
+    },
+    cologne1: {
+      # phases: ['ET_WT','EL_WL','NT_ST','NL_SL']
+      phase_pairs: [[2, 6], [3, 7], [0, 4], [1, 5]],
+      valid_acts: null
+    },
+    cologne3: {
+      #     phases: ['NT_ST','NL_SL','NL_NT','SL_ST','ET_WT','EL_WL','WT_WL','EL_ET']
+      phase_pairs: [[1, 7], [2, 8], [1, 2], [7, 8], [4, 10], [5, 11], [10, 11], [4, 5]],
+      valid_acts: {
+        # ['NT_ST','NL_SL','WT_ET','WL_EL']
+        'cluster_2415878664_254486231_359566_359576': {0: 0, 1: 1, 4: 2, 5: 3},
+        # ['NT_ST','SL_NL','WT_ET','WL_EL']
+        '360086': {0: 0, 1: 1, 4: 2, 5: 3},
+        # ['NT_ST','NL_SL','ET_EL']
+        '360082': {0: 0, 1: 1, 7: 2}
+      },
+      # lane_order: 0(NR),1(NT),2(NL),3(ER),4(ET),5(EL),6(SR),7(ST),8(SL),9(WR),10(WT),11(WL)
+      # key of lane_ordr: order in world(as well as observation order)
+      # value of lane_order: increasing order
+      lane_order: {
+        # NT,NL,ET,EL,ST,SL
+        '360082': {1: 0, 2: 1, 4: 2, 5: 2, 7: 3, 8: 4},
+        # NT,NL,ET,EL,ST,SL,WT,WL
+        '360086': {1: 0, 2: 1, 4: 2, 5: 2, 7: 3, 8: 4, 10: 5, 11: 5},
+        # NT,NL,ET,EL,ST,SL,WT,WL
+        'cluster_2415878664_254486231_359566_359576': {1: 0, 2: 1, 4: 2, 5: 3, 7: 4, 8: 5, 10: 6, 11: 7}
+      }
+    },
+    cologne1_combine: {
+      # phases: ['ET_WT','EL_WL','NT_ST','NL_SL']
+      phase_pairs: [[2, 6], [3, 7], [0, 4], [1, 5]],
+      valid_acts: null
+    },
+    cologne3_combine: {
+      #     phases: ['NT_ST','NL_SL','NL_NT','SL_ST','ET_WT','EL_WL','WT_WL','EL_ET']
+      phase_pairs: [[1, 7], [2, 8], [1, 2], [7, 8], [4, 10], [5, 11], [10, 11], [4, 5]],
+      valid_acts: {
+        # ['NT_ST','NL_SL','WT_ET','WL_EL']
+        'cluster_2415878664_254486231_359566_359576': {0: 0, 1: 1, 4: 2, 5: 3},
+        # ['NT_ST','SL_NL','WT_ET','WL_EL']
+        '360086': {0: 0, 1: 1, 4: 2, 5: 3},
+        # ['NT_ST','NL_SL','ET_EL']
+        '360082': {0: 0, 1: 1, 7: 2}
+      },
+      # lane_order: 0(NR),1(NT),2(NL),3(ER),4(ET),5(EL),6(SR),7(ST),8(SL),9(WR),10(WT),11(WL)
+      # key of lane_ordr: order in world(as well as observation order)
+      # value of lane_order: increasing order
+      lane_order: {
+        # NT,NL,ET,EL,ST,SL
+        '360082': {1: 0, 2: 1, 4: 2, 5: 2, 7: 3, 8: 4},
+        # NT,NL,ET,EL,ST,SL,WT,WL
+        '360086': {1: 0, 2: 1, 4: 2, 5: 2, 7: 3, 8: 4, 10: 5, 11: 5},
+        # NT,NL,ET,EL,ST,SL,WT,WL
+        'cluster_2415878664_254486231_359566_359576': {1: 0, 2: 1, 4: 2, 5: 3, 7: 4, 8: 5, 10: 6, 11: 7}
+      }
+    },
+    grid4x4_combine: {
+      # phases: ['NT_ST','NL_SL','NT_NL','ST_SL','ET_WT','EL_WL','WT_WL','ET_EL']
+      phase_pairs: [[1, 7], [2, 8], [1, 2], [7, 8], [4, 10], [5, 11], [10, 11], [4, 5]],
+      valid_acts: null
+    },
+    hz1x1_combine: {
+      # phases: ['ET_WT','NT_ST','EL_WL','NL_SL','WT_WL','ET_EL','ST_SL','NT_NL']
+      phase_pairs: [[2, 6], [0, 4], [3, 7], [1, 5], [6, 7], [2, 3], [4, 5], [0, 1]],
+      valid_acts: null
+    },
+    hz4x4_combine: {
+      # phases: ['ET_WT','NT_ST','EL_WL','NL_SL','WT_WL','ET_EL','ST_SL','NT_NL']
+      phase_pairs: [[4, 10], [1, 7], [5, 11], [2, 8], [10, 11], [4, 5], [7, 8], [1, 2]],
+      valid_acts: null
+    },
+    hz4x4_combine_bi5_period0.1: {
+      # phases: ['ET_WT','NT_ST','EL_WL','NL_SL','WT_WL','ET_EL','ST_SL','NT_NL']
+      phase_pairs: [[4, 10], [1, 7], [5, 11], [2, 8], [10, 11], [4, 5], [7, 8], [1, 2]],
+      valid_acts: null
+    },
+    hz4x4_combine_bi5_period0.5: {
+      # phases: ['ET_WT','NT_ST','EL_WL','NL_SL','WT_WL','ET_EL','ST_SL','NT_NL']
+      phase_pairs: [[4, 10], [1, 7], [5, 11], [2, 8], [10, 11], [4, 5], [7, 8], [1, 2]],
+      valid_acts: null
+    },
+    hz4x4_combine_bi10_period0.1: {
+      # phases: ['ET_WT','NT_ST','EL_WL','NL_SL','WT_WL','ET_EL','ST_SL','NT_NL']
+      phase_pairs: [[4, 10], [1, 7], [5, 11], [2, 8], [10, 11], [4, 5], [7, 8], [1, 2]],
+      valid_acts: null
+    },
+    hz4x4_combine_bi20_period0.01: {
+      # phases: ['ET_WT','NT_ST','EL_WL','NL_SL','WT_WL','ET_EL','ST_SL','NT_NL']
+      phase_pairs: [[4, 10], [1, 7], [5, 11], [2, 8], [10, 11], [4, 5], [7, 8], [1, 2]],
+      valid_acts: null
+    },
+
+
+    
+    arterial4x4_person: {
+      phase_pairs: [[1, 7], [5, 11], [4, 10], [4, 5], [10, 11]],
+      valid_acts: null
+    },
+    arterial5x5_person: {
+      phase_pairs: [[1, 7], [5, 11], [4, 10], [4, 5], [10, 11]],
+      valid_acts: null
+    },
+    cologne8_person: {
+      phase_pairs: [[1, 7], [2, 8], [1, 2], [7, 8], [4, 10], [5, 11], [10, 11], [4, 5], [9, 11], [3, 5], [7, 9], [0, 2], [6, 8]],
+      valid_acts: {
+        '32319828': {0:0, 1:1},
+        '252017285': {0: 0, 4: 1},
+        'cluster_1098574052_1098574061_247379905': {0: 0, 1: 1, 4: 2, 5: 3},
+        '62426694': {0: 0, 1: 1, 8: 2},
+        '280120513': {0: 0, 1: 1, 9: 2},
+        '256201389': {4: 0, 5: 1, 11: 2},
+        '26110729': {4: 0, 5: 1, 0: 2},
+        '247379907': {4: 0, 5: 1, 0: 2}
+      }
+    },
+    hz4x4_person: {
+      # phases: ['ET_WT','NT_ST','EL_WL','NL_SL','WT_WL','ET_EL','ST_SL','NT_NL']
+      phase_pairs: [[4, 10], [1, 7], [5, 11], [2, 8], [10, 11], [4, 5], [7, 8], [1, 2]],
+      phase_group: [[4,10,12,14,17,18], [1,7,15,16,13,19], [5,11], [2,8], [10,11,17,18], [4,5,12,14], [7,8,15,16], [1,2,19,13]],
+      valid_acts: null
+    },
+    hz1x1_person: {
+      # phases: ['ET_WT','NT_ST','EL_WL','NL_SL','WT_WL','ET_EL','ST_SL','NT_NL']
+      phase_pairs: [[2, 6], [0, 4], [3, 7], [1, 5], [6, 7], [2, 3], [4, 5], [0, 1]],
+      phase_group: [[2, 6, 8, 10, 13, 14], [0, 4, 11, 12, 15, 9], [3, 7], [1, 5], [6, 7, 13, 14], [2, 3, 8, 10], [4, 5, 11, 12], [0, 1, 15, 9]],
+      valid_acts: null
+    },
+    grid4x4_person: {
+      # phases: ['NT_ST','NL_SL','NT_NL','ST_SL','ET_WT','EL_WL','WT_WL','ET_EL']
+      phase_pairs: [[1, 7], [2, 8], [1, 2], [7, 8], [4, 10], [5, 11], [10, 11], [4, 5]],
+      valid_acts: null
+    },
+    jinan3x4_person: {
+      # phases: ['NT_ST','NL_SL','NT_NL','ST_SL','ET_WT','EL_WL','WT_WL','ET_EL']
+      phase_pairs: [[1, 7], [2, 8], [1, 2], [7, 8], [4, 10], [5, 11], [10, 11], [4, 5]],
+      phase_group: [[4,10,12,14,17,18], [1,7,15,16,13,19], [5,11], [2,8], [10,11,17,18], [4,5,12,14], [7,8,15,16], [1,2,19,13]],
+      valid_acts: null
+    },
+    atlanta1x5_person: {
+      phase_pairs: [[1, 7], [2, 8], [1, 2], [7, 8], [4, 10], [5, 11], [10, 11], [4, 5]],
+      # 标准phase_pairs中取phase
+      valid_acts: {
+        "69421277": {0: 0, 1: 1, 4: 2, 5: 3},
+        # "69249210": {0: 0, 1: 1, 7: 2},
+        "69249210": {0: 0, 1: 1, 7: 2, 6: 3},
+        "69387071": {0: 0, 1: 1, 4: 2, 5: 3},
+        "69227168": {0: 0, 1: 1, 4: 2, 5: 3},
+        "69515842": {0: 0, 1: 1, 4: 2, 5: 3},
+      },
+      # 将标准phase_pairs的车道id变为实际车道id顺序（顺序从正北顺时针开始算，只算进车道）
+      lane_order: {
+        "69421277": {1: 6, 7: 2, 2: 7, 8: 3, 4: 0, 10: 4, 5: 1, 11: 5},
+        # "69249210": {1: 3, 7: 1, 2: 4, 8: 2, 4: 0, 5: 0},
+        "69249210": {1: 3, 7: 1, 2: 4, 8: 2, 4: 0, 5: 0, 10: 0, 11: 0},
+        "69387071": {1: 0, 7: 3, 2: 1, 8: 4, 4: 2, 10: 5, 5: 2, 11: 5},
+        "69227168": {1: 0, 7: 3, 2: 1, 8: 4, 4: 2, 10: 5, 5: 2, 11: 5},
+        "69515842": {1: 0, 7: 4, 2: 1, 8: 5, 4: 2, 10: 6, 5: 3, 11: 7},
+      }
+    },
+  }

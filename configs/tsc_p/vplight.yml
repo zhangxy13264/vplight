@@ -1,0 +1,67 @@
+includes:
+  - configs/tsc_p/base.yml
+
+model:
+  name: vplight
+  graphic: True
+  train_model: True
+  epsilon: 0.1
+  epsilon_decay: 0.995
+  epsilon_min: 0.01
+  # batch_size: 2
+
+  one_hot: False
+  phase: True
+  vembedding_dim: 1
+  pembedding_dim: 8
+  wmap_area_width: 5
+  wmap_grid_width: 0.5
+  demand_shape: 1
+  Kt: 3
+  enable_bias: True
+  droprate: 0.1
+  stblock_num: 1
+
+world:
+    signal_config: {
+      hz1x1_person: {
+        phase_pairs: [[2, 6, 8, 10, 13, 14], [0, 4, 11, 12, 15, 9], [3, 7], [1, 5], [6, 7, 13, 14], [2, 3, 8, 10], [4, 5, 11, 12], [0, 1, 15, 9]],
+        relation: [[0, 0, 0, 1, 1, 0, 0],
+                   [0, 0, 0, 0, 0, 1, 1],
+                   [0, 0, 0, 1, 1, 0, 0],
+                   [0, 0, 0, 0, 0, 1, 1],
+                   [1, 0, 1, 0, 0, 0, 0],
+                   [1, 0, 1, 0, 0, 0, 0],
+                   [0, 1, 0, 1, 0, 0, 0],
+                   [0, 1, 0, 1, 0, 0, 0]],
+      },
+      jinan3x4_person: {
+        phase_pairs: [[4,10,12,14,17,18], [1,7,15,16,13,19], [5,11], [2,8], [10,11,17,18], [4,5,12,14], [7,8,15,16], [1,2,19,13]],
+        relation: [[0, 1, 1, 0, 0, 0, 0],
+                   [0, 1, 1, 0, 0, 0, 0],
+                   [1, 1, 0, 0, 0, 0, 0],
+                   [1, 1, 0, 0, 0, 0, 0],
+                   [0, 0, 0, 0, 0, 1, 1],
+                   [0, 0, 0, 0, 0, 1, 1],
+                   [0, 0, 0, 0, 1, 1, 0],
+                   [0, 0, 0, 0, 1, 1, 0]]
+      },
+      hz4x4_person: {
+        phase_pairs: [[4,10,12,14,17,18], [1,7,15,16,13,19], [5,11], [2,8], [10,11,17,18], [4,5,12,14], [7,8,15,16], [1,2,19,13]],
+        relation: [[0, 0, 0, 1, 1, 0, 0],
+                   [0, 0, 0, 0, 0, 1, 1],
+                   [0, 0, 0, 1, 1, 0, 0],
+                   [0, 0, 0, 0, 0, 1, 1],
+                   [1, 0, 1, 0, 0, 0, 0],
+                   [1, 0, 1, 0, 0, 0, 0],
+                   [0, 1, 0, 1, 0, 0, 0],
+                   [0, 1, 0, 1, 0, 0, 0]]
+      },
+    }
+
+trainer:
+  # learning_start: 5000
+  # learning_start: 2
+  buffer_size: 5000
+  test_when_train: True
+  episodes: 100

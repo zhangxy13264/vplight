@@ -1,0 +1,37 @@
+includes:
+  - configs/tsc_p/base.yml
+
+model:
+  name: tinylight
+  train_model: True
+  epsilon: 0.1
+  graphic: True
+  one_hot: False
+  phase: True
+  vembedding_dim: 1
+  pembedding_dim: 8
+  wmap_area_width: 5
+  wmap_grid_width: 0.5
+
+  # tinylight
+  batch_size: 32
+  tau: 0.1
+  gamma: 0.9
+  learning_rate: 0.001
+  ob_list: ['lane_count','lane_waiting_count','lane_waiting_time_count','lane_delay','lane_pressure']
+  # ob_list_p: ['sidewalk_count']
+  # ob_list_p: []
+  # ob_list_p: ["walking_area_con"]
+  ob_list_p: ['sidewalk_count']
+
+trainer:
+  action_interval: 15
+  learning_start: 32
+  episodes: 100
+  buffer_size: 100000
+  test_when_train: True
+  test_when_train_rate: 5
+
+logger:
+  tracer: False
+  tracer_dir: "tracer/"

@@ -1,0 +1,36 @@
+includes:
+  - configs/tsc_p/base.yml
+
+
+model:
+  name: ecolight
+  train_model: True
+  epsilon: 0.1
+  graphic: True
+  one_hot: True
+  phase: True
+  vembedding_dim: 1
+  pembedding_dim: 8
+  wmap_area_width: 5
+  wmap_grid_width: 0.5
+  duration: False
+
+  batch_size: 32
+  tau: 0.1
+  gamma: 0.9
+  learning_rate: 0.001
+  ob_list: ['lane_count']
+  ob_list_p: []
+
+trainer:
+  duration: False
+  action_interval: 15
+  learning_start: 32
+  episodes: 100
+  buffer_size: 100000
+  test_when_train: True
+  test_when_train_rate: 5
+
+logger:
+  tracer: False
+  tracer_dir: "tracer/"
