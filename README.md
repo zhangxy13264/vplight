@@ -2,7 +2,7 @@
 
 This repository is for VPLight to address the traffic signal control problem in mixed traffic flows.
 
-The code framework is based on [LibSignal]([https://github.com/DaRL-LibSignal/LibSignal](https://github.com/DaRL-LibSignal/LibSignal)). It extends the environment to include pedestrian traffic flows. It supports the SUMO simulation environment.
+The code framework is based on [LibSignal](https://github.com/DaRL-LibSignal/LibSignal). It extends the environment to include pedestrian traffic flows. It supports the SUMO simulation environment.
 
 # Install
 
