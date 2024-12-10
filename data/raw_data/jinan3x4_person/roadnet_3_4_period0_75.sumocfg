@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<configuration>
+	<input>
+		<net-file value="roadnet_3_4.net.xml"/>
+		<route-files value="anon_3_4_jinan_real.rou.xml,roadnet_3_4_period0_75.trip.xml"/>
+		<additional-files value="e2.add.xml"/>
+	</input>
+	<time>
+		<begin value="0"/>
+		<end value="3600"/>
+	</time>
+	<gui_only>
+		<gui-settings-file value="viewsettings.xml"/>
+	</gui_only>
+</configuration>
