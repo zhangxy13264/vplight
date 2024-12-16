@@ -30,15 +30,6 @@ trainer:
   update_model_rate: 1
   update_target_rate: 10
   test_when_train: True
-  # test_when_train_rate: 5
-  # pfe_learning_start: 64
-  # pfe_learning_rate: 64
-  
-  excel_test: True # False 表示导出的excel没有TEST
-  mask: False
-  duration: False
-  global_reward: False
-  global_ob: False
 
 model:
   name: "non-rl"
@@ -46,7 +37,7 @@ model:
   test_model: True
   load_model: False
   graphic: False
-  vehicle_max: 1 # TODO: what is this for
+  vehicle_max: 1 
   learning_rate: 0.001
   batch_size: 64
   gamma: 0.95
